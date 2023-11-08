@@ -1,0 +1,4 @@
+<manifest projecttype="ACCOUNTCUSTOMIZATION">
+  <projectname>gwr-ns-cicd</projectname>
+  <frameworkversion>1.0</frameworkversion>
+</manifest>
