@@ -3,7 +3,6 @@ on:
   pull_request:
     types:
       - closed
-    branches: off
 
 jobs:
   Run-Salto-Deployment:
