@@ -3,7 +3,6 @@ on:
   pull_request:
     types:
       - closed
-    branches: off
 
 jobs:
   Run-Salto-Deployment:
@@ -32,19 +31,15 @@ jobs:
           ./salto-cloud deployment create from-pull-request -E ${{vars.SALTO_UAT_ENV}} -u $pr_url  |
              grep "https://app.salto.io" | 
              sed -e 's/^https\:\/\/.*\/deployments\///' > ~/deployment_id.txt
-      - name: Save Deployment ID in PR comments
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
-        run: |
-          gh pr comment ${{ github.event.pull_request.number }} --body "$(cat ~/deployment_id.txt)"
+             
       - name: Run Deploy to UAT
         env: 
           SALTO_API_TOKEN: ${{ secrets.SALTO_API_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GWR_GH_TOKEN }}
         run: |
-          depl_id=$(gh pr view ${{ github.event.pull_request.number }} --json comments -q '.comments[0].body') 
-          # this line grabs the deployment ID from the first comment on the PR (created by the previous workflow)
+          depl_id="$(cat ~/.deployment_id.txt)"
           
-          ./salto-cloud deployment deploy -i $depl_id --push
+
+          ./salto-cloud deployment deploy -b "${{ github.ref..... }}" -i "$depl_id" --push
 
      
