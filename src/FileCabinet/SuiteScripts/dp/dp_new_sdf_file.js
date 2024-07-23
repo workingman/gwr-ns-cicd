@@ -21,7 +21,7 @@ define(['N/log'],
          */
 
         const getInputData = (inputContext) => {
-
+          log.debug("This is a brand new file for testing the sdf pr integration - DP comment");
         }
 
         /**
@@ -42,9 +42,7 @@ define(['N/log'],
          */
 
         const map = (mapContext) => {
-            log.debug("I'm mapping!")
-            log.debug("Yet another Log for targeted fetch")
-
+log.debug("new change");
         }
 
         /**
@@ -63,7 +61,7 @@ define(['N/log'],
          * @since 2015.2
          */
         const reduce = (reduceContext) => {
-
+           log.emergency("From the NS UI")
         }
 
 
@@ -87,7 +85,7 @@ define(['N/log'],
          * @since 2015.2
          */
         const summarize = (summaryContext) => {
-            log.emergency("No Manifest, No Deploy xml");
+
         }
 
         return {getInputData, map, reduce, summarize}
